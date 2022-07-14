@@ -1,14 +1,13 @@
 import * as React from "react"
 
-import { useSession, signIn, signOut, getSession } from "next-auth/react"
+import { getSession } from "next-auth/react"
 
-import { parseCookies } from "nookies"
-import { GoogleLoginButton } from "react-social-login-buttons"
-import { loadUser } from "../../../redux/userAction"
-import { useDispatch, useSelector } from "react-redux"
-import { wrapper } from "../../../redux/store"
-import { Button, Typography } from "@mui/material"
+import { Button } from "@mui/material"
 import axios from "axios"
+import { parseCookies } from "nookies"
+import { useSelector } from "react-redux"
+import store from "../../../redux/store"
+import { loadUser } from "../../../redux/userAction"
 
 const Profile = () => {
   const profile = useSelector((state) => state.profile)
@@ -58,22 +57,38 @@ const Profile = () => {
   )
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
-    async ({ req }) => {
-      const session = await getSession({ req })
-      const cookies = parseCookies()
+// export const getServerSideProps = wrapper.getServerSideProps(
+//   (store) =>
+//     async ({ req }) => {
+//       const session = await getSession({ req })
+//       const cookies = parseCookies()
 
-      const user = cookies?.user ? JSON.parse(cookies.user) : session?.user
+//       const user = cookies?.user ? JSON.parse(cookies.user) : session?.user
 
-      await store.dispatch(loadUser(user?.email, user))
+//       await store.dispatch(loadUser(user?.email, user))
 
-      return {
-        props: {
-          session,
-        },
-      }
-    }
-)
+//       return {
+//         props: {
+//           session,
+//         },
+//       }
+//     }
+// )
+
+export async function getServerSideProps(req) {
+  const session = await getSession({ req })
+  const cookies = parseCookies()
+
+  const user = cookies?.user ? JSON.parse(cookies.user) : session?.user
+
+  await store.dispatch(loadUser(user?.email, user))
+
+  return {
+    props: {
+      session,
+    },
+  }
+}
+
 
 export default Profile

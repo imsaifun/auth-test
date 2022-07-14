@@ -18,7 +18,7 @@ import * as React from "react"
 import { useEffect, useState } from "react"
 import { GoogleLoginButton } from "react-social-login-buttons"
 import { toast } from "react-toastify"
-import { wrapper } from "../../../redux/store"
+import store from "../../../redux/store"
 import { loadUser } from "../../../redux/userAction"
 
 const theme = createTheme()
@@ -167,22 +167,38 @@ function Login() {
 //   }
 // }
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
-    async ({ req }) => {
-      const session = await getSession({ req })
-      const cookies = parseCookies()
+// export const getServerSideProps = wrapper.getServerSideProps(
+//   (store) =>
+//     async ({ req }) => {
+//       const session = await getSession({ req })
+//       const cookies = parseCookies()
 
-      const user = cookies?.user ? JSON.parse(cookies.user) : session?.user
+//       const user = cookies?.user ? JSON.parse(cookies.user) : session?.user
 
-      await store.dispatch(loadUser(user?.email, user))
+//       await store.dispatch(loadUser(user?.email, user))
 
-      return {
-        props: {
-          session,
-        },
-      }
-    }
-)
+//       return {
+//         props: {
+//           session,
+//         },
+//       }
+//     }
+// )
+
+export async function getServerSideProps(req) {
+  const session = await getSession({ req })
+  const cookies = parseCookies()
+
+  const user = cookies?.user ? JSON.parse(cookies.user) : session?.user
+
+  await store.dispatch(loadUser(user?.email, user))
+
+  return {
+    props: {
+      session,
+    },
+  }
+}
+
 
 export default Login
