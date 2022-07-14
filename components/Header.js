@@ -78,10 +78,10 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             AuthApp
           </Typography>
-          <Link href="/user/profile">
+          <Link href="/user/profile" passHref>
             <Button color="inherit">{userState && userState.name}</Button>
           </Link>
-          <Link href="/user/author">
+          <Link href="/user/author" passHref>
             <Button color="inherit">Author</Button>
           </Link>
 
