@@ -1,3 +1,4 @@
+
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/router"
 import { parseCookies } from "nookies"
@@ -17,6 +18,7 @@ const Wrapper = ({ children }) => {
   useEffect(() => {
     if (!user) {
       router.push("/user/login")
+// router.replace('/user/login');
     }
   }, [user, router])
 

@@ -81,6 +81,9 @@ export default function ButtonAppBar() {
           <Link href="/user/profile">
             <Button color="inherit">{userState && userState.name}</Button>
           </Link>
+          <Link href="/user/author">
+            <Button color="inherit">Author</Button>
+          </Link>
 
           <Box sx={{ ml: 2 }}>
             {userState ? (
