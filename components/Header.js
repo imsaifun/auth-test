@@ -24,7 +24,7 @@ export default function ButtonAppBar() {
   const { data: session } = useSession()
   const dispatch = useDispatch()
 
-  const profile = useSelector((state) => state.profile)
+  // const profile = useSelector((state) => state.profile)
   // const { loading, error, dbUser } = profile
 
   const user = cookies?.user
@@ -33,7 +33,7 @@ export default function ButtonAppBar() {
     ? session?.user
     : ""
 
-  console.log(userState)
+  // console.log(userState)
   useEffect(() => {
     session ? setUserState(session.user) : setUserState(user)
 

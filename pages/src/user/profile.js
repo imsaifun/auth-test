@@ -40,18 +40,18 @@ const Profile = () => {
 
       {dbUser && (
         <>
-          <Typography component="h1" variant="h5">
+          <h3>
             {dbUser.name}
-          </Typography>
-          <Typography component="h1" variant="h5">
+          </h3>
+          <h3>
             {dbUser.email}
-          </Typography>
-          <Typography component="h1" variant="h5">
+          </h3>
+          <h3>
             {dbUser.validEmail}{" "}
             {dbUser.validEmail === "not" && (
               <Button onClick={emailReset}>Send Token</Button>
             )}
-          </Typography>
+          </h3>
         </>
       )}
     </div>
