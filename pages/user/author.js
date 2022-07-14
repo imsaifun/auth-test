@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react"
-import Wrapper from "../../../components/auth/wrapper"
+import Wrapper from "../../components/auth/wrapper"
 const Author = () => {
   return (
     <Wrapper>
