@@ -52,32 +52,62 @@ export default function SignIn() {
 
   return (
     <>
-    
-          <form
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Reset Password
+          </Typography>
+          <Box
+            component="form"
             onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
           >
-            <input
+            <TextField
+              margin="normal"
               required
+              fullWidth
               name="password"
+              label="Password"
               type="password"
               id="password"
+              autoComplete="current-password"
             />
-            <input
+            <TextField
+              margin="normal"
               required
+              fullWidth
               id="conPassword"
+              label="Confirm Password"
               name="conPassword"
               type="password"
+              autoComplete="email"
+              autoFocus
             />
 
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
-            <button
+            <Button
               type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2, backgroundColor: "secondary.main" }}
             >
               Submit
-            </button>
+            </Button>
             {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -90,7 +120,9 @@ export default function SignIn() {
                 </Link>
               </Grid>
             </Grid> */}
-          </form>
+          </Box>
+        </Box>
+      </Container>
     </>
   )
 }

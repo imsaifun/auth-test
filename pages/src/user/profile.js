@@ -1,12 +1,13 @@
 import * as React from "react"
 
-import { getSession } from "next-auth/react"
+import { useSession, signIn, signOut, getSession } from "next-auth/react"
 
 import { parseCookies } from "nookies"
-import { useSelector } from "react-redux"
-import store, { wrapper } from "../../../redux/store"
+import { GoogleLoginButton } from "react-social-login-buttons"
 import { loadUser } from "../../../redux/userAction"
-
+import { useDispatch, useSelector } from "react-redux"
+import { wrapper } from "../../../redux/store"
+import { Button, Typography } from "@mui/material"
 import axios from "axios"
 
 const Profile = () => {
@@ -39,37 +40,40 @@ const Profile = () => {
 
       {dbUser && (
         <>
-          <h1>
+          <Typography component="h1" variant="h5">
             {dbUser.name}
-          </h1>
-          <h1>
+          </Typography>
+          <Typography component="h1" variant="h5">
             {dbUser.email}
-          </h1>
-          <h1>
+          </Typography>
+          <Typography component="h1" variant="h5">
             {dbUser.validEmail}{" "}
             {dbUser.validEmail === "not" && (
-              <button onClick={emailReset}>Send Token</button>
+              <Button onClick={emailReset}>Send Token</Button>
             )}
-          </h1>
+          </Typography>
         </>
       )}
     </div>
   )
 }
 
-export async function getServerSideProps(req) {
-  const session = await getSession({ req })
-  const cookies = parseCookies()
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req }) => {
+      const session = await getSession({ req })
+      const cookies = parseCookies()
 
-  const user = cookies?.user ? JSON.parse(cookies.user) : session?.user
+      const user = cookies?.user ? JSON.parse(cookies.user) : session?.user
 
-  await store.dispatch(loadUser(user?.email, user))
+      await store.dispatch(loadUser(user?.email, user))
 
-  return {
-    props: {
-      session,
-    },
-  }
-}
+      return {
+        props: {
+          session,
+        },
+      }
+    }
+)
 
 export default Profile

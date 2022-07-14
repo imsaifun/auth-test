@@ -1,7 +1,8 @@
-import bcrypt from "bcryptjs"
-import jwt from "jsonwebtoken"
 import connectDB from "../../../../connectDB"
 import User from "../../../../model/userModel"
+import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
+import absoluteUrl from "next-absolute-url"
 
 connectDB()
 

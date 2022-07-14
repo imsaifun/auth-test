@@ -1,11 +1,20 @@
-import cookie from "js-cookie"
-import { signOut, useSession } from "next-auth/react"
-import Link from "next/link"
-import { useRouter } from "next/router"
+import AppBar from "@mui/material/AppBar"
+import Box from "@mui/material/Box"
+import Toolbar from "@mui/material/Toolbar"
+import Typography from "@mui/material/Typography"
+import Button from "@mui/material/Button"
+import IconButton from "@mui/material/IconButton"
+import MenuIcon from "@mui/icons-material/Menu"
 import { parseCookies } from "nookies"
+import { useRouter } from "next/router"
+import Link from "next/link"
+import { useSession, signOut } from "next-auth/react"
+import cookie from "js-cookie"
 import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
 import { useDispatch, useSelector } from "react-redux"
 import { loadUser } from "../redux/userAction"
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 export default function ButtonAppBar() {
   const cookies = parseCookies()
   const router = useRouter()
@@ -21,10 +30,10 @@ export default function ButtonAppBar() {
   const user = cookies?.user
     ? JSON.parse(cookies.user)
     : session?.user
-      ? session?.user
-      : ""
+    ? session?.user
+    : ""
 
-  // console.log(userState)
+  console.log(userState)
   useEffect(() => {
     session ? setUserState(session.user) : setUserState(user)
 
@@ -52,32 +61,48 @@ export default function ButtonAppBar() {
   }
 
   return (
-    <>
-      <Link href="/" passHref>
-        Logo
-      </Link>
-      <Link href="/src/user/profile" passHref>
-        <h5>{userState && userState.name}</h5>
-      </Link>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            // sx={{ flexGrow: 1 }}
+          >
+            <Link href="http://localhost:3000">
+              <LockOutlinedIcon />
+            </Link>
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            AuthApp
+          </Typography>
+          <Link href="/src/user/profile">
+            <Button color="inherit">{userState && userState.name}</Button>
+          </Link>
 
-      <div>
-        {userState ? (
-          <>
-            <button onClick={logoutHandler}>
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link href="/src/user/login" passHref>
-              <button>Login</button>
-            </Link>
-            <Link href="/src/user/register" passHref>
-              <button>Register</button>
-            </Link>
-          </>
-        )}
-      </div>
-    </>
+          <Box sx={{ ml: 2 }}>
+            {userState ? (
+              <>
+                <Button color="inherit" onClick={logoutHandler}>
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link href="/src/user/login">
+                  <Button color="inherit">Login</Button>
+                </Link>
+                <Link href="/src/user/register">
+                  <Button color="inherit">Register</Button>
+                </Link>
+              </>
+            )}
+          </Box>
+        </Toolbar>
+      </AppBar>
+    </Box>
   )
 }

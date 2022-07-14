@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import connectDB from "../../../connectDB"
 import User from "../../../model/userModel"
 import bcrypt from "bcryptjs"
