@@ -30,9 +30,4 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   )
 }
 
-MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.object.isRequired,
-}
-
 export default wrapper.withRedux(MyApp)
