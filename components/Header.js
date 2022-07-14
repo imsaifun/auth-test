@@ -56,6 +56,7 @@ export default function ButtonAppBar() {
     cookie.remove("user")
     // setisLoggedIn(false)
     setUserState("")
+    router.push("/user/login")
   }
 
   return (
