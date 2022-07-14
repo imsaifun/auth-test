@@ -72,7 +72,7 @@ export default function ButtonAppBar() {
             sx={{ mr: 2 }}
             // sx={{ flexGrow: 1 }}
           >
-            <Link href="http://localhost:3000">
+            <Link href="/">
               <LockOutlinedIcon />
             </Link>
           </IconButton>
