@@ -1,6 +1,6 @@
-import { parseCookies } from "nookies"
-import { useSession, signIn, signOut, getSession } from "next-auth/react"
+import { useSession } from "next-auth/react"
 import { useRouter } from "next/router"
+import { parseCookies } from "nookies"
 import { useEffect } from "react"
 
 const Wrapper = ({ children }) => {
@@ -16,7 +16,7 @@ const Wrapper = ({ children }) => {
 
   useEffect(() => {
     if (!user) {
-      router.push("/src/user/login")
+      router.push("/user/login")
     }
   }, [user, router])
 

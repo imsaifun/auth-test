@@ -1,20 +1,18 @@
-import * as React from "react"
-import Avatar from "@mui/material/Avatar"
-import Button from "@mui/material/Button"
-import CssBaseline from "@mui/material/CssBaseline"
-import TextField from "@mui/material/TextField"
-import FormControlLabel from "@mui/material/FormControlLabel"
-import Checkbox from "@mui/material/Checkbox"
-import Link from "@mui/material/Link"
-import Grid from "@mui/material/Grid"
-import Box from "@mui/material/Box"
 import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox"
-import Typography from "@mui/material/Typography"
+import Avatar from "@mui/material/Avatar"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
 import Container from "@mui/material/Container"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
+import CssBaseline from "@mui/material/CssBaseline"
+import Grid from "@mui/material/Grid"
+import Link from "@mui/material/Link"
+import { createTheme } from "@mui/material/styles"
+import TextField from "@mui/material/TextField"
+import Typography from "@mui/material/Typography"
 import axios from "axios"
-import { toast } from "react-toastify"
 import { useRouter } from "next/router"
+import * as React from "react"
+import { toast } from "react-toastify"
 
 const theme = createTheme()
 
@@ -87,12 +85,12 @@ export default function SignIn() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="/src/user/login" variant="body2">
+                  <Link href="/user/login" variant="body2">
                     Have an account ? Login
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/src/user/register" variant="body2">
+                  <Link href="/user/register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

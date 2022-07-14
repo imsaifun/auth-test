@@ -6,8 +6,8 @@ import { Button } from "@mui/material"
 import axios from "axios"
 import { parseCookies } from "nookies"
 import { useSelector } from "react-redux"
-import store from "../../../redux/store"
-import { loadUser } from "../../../redux/userAction"
+import store from "../../redux/store"
+import { loadUser } from "../../redux/userAction"
 
 const Profile = () => {
   const profile = useSelector((state) => state.profile)

@@ -1,9 +1,9 @@
-import connectDB from "../../../connectDB"
-import User from "../../../model/userModel"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import absoluteUrl from "next-absolute-url"
+import connectDB from "../../../connectDB"
 import { sendEmail } from "../../../helpers/sendMail"
+import User from "../../../model/userModel"
 
 connectDB()
 
@@ -37,7 +37,7 @@ export default async (req, res) => {
       await newUser.save()
 
       const { origin } = absoluteUrl(req)
-      const link = `${origin}/src/user/email/${token}`
+      const link = `${origin}/user/email/${token}`
 
       const message = `<div>Click on the link below to verify your email, if the link is not working then please paste into the browser.</div></br>
     <div>link:${link}</div>`

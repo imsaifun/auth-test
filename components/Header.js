@@ -1,20 +1,18 @@
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
-import Toolbar from "@mui/material/Toolbar"
-import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 import IconButton from "@mui/material/IconButton"
-import MenuIcon from "@mui/icons-material/Menu"
-import { parseCookies } from "nookies"
-import { useRouter } from "next/router"
-import Link from "next/link"
-import { useSession, signOut } from "next-auth/react"
+import Toolbar from "@mui/material/Toolbar"
+import Typography from "@mui/material/Typography"
 import cookie from "js-cookie"
+import { signOut, useSession } from "next-auth/react"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { parseCookies } from "nookies"
 import { useEffect, useState } from "react"
-import { toast } from "react-toastify"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { loadUser } from "../redux/userAction"
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
 export default function ButtonAppBar() {
   const cookies = parseCookies()
   const router = useRouter()
@@ -46,7 +44,7 @@ export default function ButtonAppBar() {
   //     setisLoggedIn(true)
   //   }
   //   if (!user) {
-  //     router.push("/src/user/login")
+  //     router.push("/user/login")
   //   }
   // }, [isLoggedIn])
 
@@ -79,7 +77,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             AuthApp
           </Typography>
-          <Link href="/src/user/profile">
+          <Link href="/user/profile">
             <Button color="inherit">{userState && userState.name}</Button>
           </Link>
 
@@ -92,10 +90,10 @@ export default function ButtonAppBar() {
               </>
             ) : (
               <>
-                <Link href="/src/user/login">
+                <Link href="/user/login">
                   <Button color="inherit">Login</Button>
                 </Link>
-                <Link href="/src/user/register">
+                <Link href="/user/register">
                   <Button color="inherit">Register</Button>
                 </Link>
               </>

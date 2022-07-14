@@ -18,8 +18,8 @@ import * as React from "react"
 import { useEffect, useState } from "react"
 import { GoogleLoginButton } from "react-social-login-buttons"
 import { toast } from "react-toastify"
-import store from "../../../redux/store"
-import { loadUser } from "../../../redux/userAction"
+import store from "../../redux/store"
+import { loadUser } from "../../redux/userAction"
 
 const theme = createTheme()
 
@@ -140,12 +140,12 @@ function Login() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="/src/user/forget" variant="body2">
+                <Link href="/user/forget" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/src/user/register" variant="body2">
+                <Link href="/user/register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
