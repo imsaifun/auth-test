@@ -1,24 +1,23 @@
-import * as React from "react"
 import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import CssBaseline from "@mui/material/CssBaseline"
 import TextField from "@mui/material/TextField"
+import * as React from "react"
 
-import Checkbox from "@mui/material/Checkbox"
-import Link from "@mui/material/Link"
-import Grid from "@mui/material/Grid"
-import Box from "@mui/material/Box"
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
-import Typography from "@mui/material/Typography"
+import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid"
+import Link from "@mui/material/Link"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { useState, useEffect } from "react"
+import Typography from "@mui/material/Typography"
 import axios from "axios"
+import { getSession, signIn, useSession } from "next-auth/react"
+import { useState } from "react"
 import { toast } from "react-toastify"
-import { useSession, signIn, signOut, getSession } from "next-auth/react"
 
-import { parseCookies } from "nookies"
 import { useRouter } from "next/router"
+import { parseCookies } from "nookies"
 import { GoogleLoginButton } from "react-social-login-buttons"
 
 const theme = createTheme()
@@ -35,16 +34,16 @@ function Register() {
 
   const cookies = parseCookies
 
-  useEffect(() => {
-    if (session) {
-      toast.success("Login Success")
-      router.push("/")
-    }
+  // useEffect(() => {
+  //   if (session) {
+  //     toast.success("Login Success")
+  //     router.push("/")
+  //   }
 
-    if (cookies?.user) {
-      router.push("/")
-    }
-  }, [router])
+  //   if (cookies?.user) {
+  //     router.push("/")
+  //   }
+  // }, [router])
 
   const SubmitHandler = async (e) => {
     e.preventDefault()
@@ -84,28 +83,12 @@ function Register() {
   }
 
   return (
-    <ThemeProvider>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+    <>
+          <h1>
             Sign up
-          </Typography>
-          <Box
-            component="form"
-            noValidate
+          </h1>
+          <form
             onSubmit={SubmitHandler}
-            sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -201,10 +184,8 @@ function Register() {
                 </Link>
               </Grid>
             </Grid>
-          </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+          </form>
+          </>
   )
 }
 
