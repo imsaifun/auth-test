@@ -1,27 +1,16 @@
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
-import Avatar from "@mui/material/Avatar"
-import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
-import Container from "@mui/material/Container"
-import CssBaseline from "@mui/material/CssBaseline"
-import Grid from "@mui/material/Grid"
-import Link from "@mui/material/Link"
-import { createTheme } from "@mui/material/styles"
-import TextField from "@mui/material/TextField"
-import Typography from "@mui/material/Typography"
 import axios from "axios"
 import cookie from "js-cookie"
-import { getSession, signIn, useSession } from "next-auth/react"
+import { getSession, useSession } from "next-auth/react"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { parseCookies } from "nookies"
 import * as React from "react"
 import { useEffect, useState } from "react"
-import { GoogleLoginButton } from "react-social-login-buttons"
 import { toast } from "react-toastify"
 import store from "../../redux/store"
 import { loadUser } from "../../redux/userAction"
 
-const theme = createTheme()
+
 
 function Login() {
   const [email, setEmail] = useState("")
@@ -70,89 +59,50 @@ function Login() {
 
   return (
     <>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+      
+          <h1 component="h1" variant="h5">
             Sign in
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            sx={{ mt: 1 }}
+          </h1>
+          <form
             onSubmit={SubmitHandler}
           >
-            <TextField
-              margin="normal"
+            <input
               required
-              fullWidth
               id="email"
-              label="Email Address"
               name="email"
-              autoComplete="email"
-              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <TextField
-              margin="normal"
+            <input
               required
-              fullWidth
               name="password"
-              label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <Grid
-              container
-              sx={{
-                mt: 2,
-                mb: 2,
-                border: 1,
-                borderRadius: 1,
-                borderColor: "grey.400",
-              }}
-            >
-              <GoogleLoginButton onClick={() => signIn("google")} />
-            </Grid>
+      
+      
 
-            <Button
+            <button
               type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 2, mb: 2, backgroundColor: "secondary.main" }}
             >
               Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="/user/forget" variant="body2">
+            </button>
+            <br />
+            
+                <Link href="/user/forget" passHref>
                   Forgot password?
                 </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/user/register" variant="body2">
+
+                <br />
+                
+                <Link href="/user/register" passHref>
                   {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      </Container>
+                
+          </form>
     </>
   )
 }
