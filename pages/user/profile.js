@@ -2,12 +2,11 @@ import * as React from "react"
 
 import { getSession } from "next-auth/react"
 
-import { Button } from "@mui/material"
 import axios from "axios"
 import { parseCookies } from "nookies"
 import { useSelector } from "react-redux"
-import store from "../../redux/store"
 import { loadUser } from "../../redux/action/userAction"
+import store from "../../redux/store"
 
 const Profile = () => {
   const profile = useSelector((state) => state.profile)
