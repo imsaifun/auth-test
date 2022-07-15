@@ -48,7 +48,7 @@ const Profile = () => {
           <h3>
             {dbUser.validEmail}{" "}
             {dbUser.validEmail === "not" && (
-              <Button onClick={emailReset}>Send Token</Button>
+              <button onClick={emailReset}>Send Token</button>
             )}
           </h3>
         </>

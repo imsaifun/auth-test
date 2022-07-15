@@ -1,4 +1,3 @@
-import Typography from "@mui/material/Typography"
 import { getSession, useSession } from "next-auth/react"
 import { useRouter } from "next/router"
 import { parseCookies } from "nookies"

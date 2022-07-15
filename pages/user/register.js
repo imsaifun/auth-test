@@ -1,16 +1,15 @@
 import * as React from "react"
 
-import Link from "@mui/material/Link"
-import { createTheme } from "@mui/material/styles"
 import axios from "axios"
 import { getSession, useSession } from "next-auth/react"
+import Link from "next/link"
 import { useState } from "react"
 import { toast } from "react-toastify"
 
 import { useRouter } from "next/router"
 import { parseCookies } from "nookies"
 
-const theme = createTheme()
+// const theme = createTheme()
 
 function Register() {
     const [email, setEmail] = useState("")
