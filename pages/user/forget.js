@@ -1,20 +1,10 @@
-import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox"
-import Avatar from "@mui/material/Avatar"
-import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
-import Container from "@mui/material/Container"
-import CssBaseline from "@mui/material/CssBaseline"
-import Grid from "@mui/material/Grid"
-import Link from "@mui/material/Link"
-import { createTheme } from "@mui/material/styles"
-import TextField from "@mui/material/TextField"
-import Typography from "@mui/material/Typography"
 import axios from "axios"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import * as React from "react"
 import { toast } from "react-toastify"
 
-const theme = createTheme()
+// const theme = createTheme()
 
 export default function SignIn() {
   const router = useRouter()
@@ -34,7 +24,7 @@ export default function SignIn() {
 
       const { data } = await axios.post(`/api/user/forget`, { email }, config)
       toast.success(data.message)
-      router.push("/login")
+      router.push("/user/login")
     } catch (error) {
       toast.error(error?.response?.data?.error)
     }
@@ -42,30 +32,15 @@ export default function SignIn() {
 
   return (
     <>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <ForwardToInboxIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+  
+          <h1 component="h1" variant="h5">
             Email Reset Link
-          </Typography>
-          <Box
-            component="form"
+          </h1>
+          <form
             onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
           >
-            <Grid container spacing={2}>
-              <TextField
+
+              <input
                 margin="normal"
                 required
                 fullWidth
@@ -75,30 +50,21 @@ export default function SignIn() {
                 autoComplete="email"
                 autoFocus
               />
-              <Button
+              <button
                 type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, backgroundColor: "secondary.main" }}
               >
                 Submit
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="/user/login" variant="body2">
+              </button>
+              <br />
+                  <Link href="/user/login" passHref>
                     Have an account ? Login
                   </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="/user/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                  <br />
+                  
+                  <Link href="/user/register" passHref>
+                    Dont have an account? Sign Up
                   </Link>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      </Container>
+          </form>
     </>
   )
 }

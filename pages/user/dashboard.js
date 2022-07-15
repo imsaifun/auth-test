@@ -1,4 +1,3 @@
-import { createTheme } from "@mui/material/styles"
 import Typography from "@mui/material/Typography"
 import { getSession, useSession } from "next-auth/react"
 import { useRouter } from "next/router"
@@ -6,7 +5,7 @@ import { parseCookies } from "nookies"
 import * as React from "react"
 import { useEffect, useState } from "react"
 
-const theme = createTheme()
+// const theme = createTheme()
 
 function Dashboard() {
   const [email, setEmail] = useState("")
@@ -25,9 +24,9 @@ function Dashboard() {
 
   return (
     <>
-      <Typography component="h1" variant="h5">
+      <h1 component="h1" variant="h5">
         Dashboard
-      </Typography>
+      </h1>
       <h3>This is secret page</h3>
     </>
   )
