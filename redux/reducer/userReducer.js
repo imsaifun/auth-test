@@ -2,7 +2,7 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
-} from "./userTypes"
+} from "../userTypes"
 
 export const profileReducer = (state = { dbUser: null }, action) => {
   switch (action.type) {

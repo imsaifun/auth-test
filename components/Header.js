@@ -6,7 +6,7 @@ import { useRouter } from "next/router"
 import { parseCookies } from "nookies"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { loadUser } from "../redux/userAction"
+import { loadUser } from "../redux/action/userAction"
 export default function ButtonAppBar() {
   const cookies = parseCookies()
   const router = useRouter()
